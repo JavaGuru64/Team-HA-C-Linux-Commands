@@ -1,0 +1,44 @@
+Documentation for change_dir.c
+
+WHAT IS THIS:
+
+change_dir.c is the code for a program that changes the current working directory of a process and is my implementation for the cd Linux command. 
+
+INCLUDED C LIBRARIES:
+
+# This library allows us to use functions to access linux user data #
+
+pwd.h
+
+# This library allows us to use functions to access information on the current working directory #
+
+unistd.h
+
+# Libraries used for standard C functions and file manipulation #
+
+stdlib.h
+stdio.h
+
+# Libraries used for easy yet in-depth error messages #
+
+string.h
+errno.h
+
+FUNCTIONS:
+
+void print_error(char *this, char *dirname):
+
+This function is passed in a string which is the name of the program running and a string which is the second argument passed through the command line. This function will then print out an error message based off of the current value in errno, which is a variable defined in errno.h, and then exits the program. This function is called whenever an error occurs in our program.
+
+void print_usage(char *this):
+
+This function is passed in a string which is the name of the program running. This function will then print out an error message and the proper usage of the program being run. This function will then exit the program. This error is run whenever the command line input does not make sense.
+
+int main(int argc, char *argv[]):
+
+Our main function. This takes in the command line arguments and changes the directory accordingly. If there is a directory name given, then we use the unistd.h function chdir(const char *filename) to change the current working directory to this argument. Because of the problems mentioned in ODDITIES this change is not permanent so the now current working directory is printed out before the program ends. If there are no command line arguments the directory is changed to the current users home directory. This is done by getting a passed struct from the current login and then passing the pw_dir variable from this struct into the chdir(const char *filename) function. Again, because of the problems mentioned in ODDITIES this change is not permanent so the now current working directory is printed out before the program ends. Finally, if something seems wrong with the Syntax or usage of this command (i.e. neither of the above mentioned conditions are true) the print_usage(char *this) function is called.
+
+
+ODDITIES:
+
+Unfortunately, cd is usually built right into the Linux shell program to avoid the problem I ran into for this program. What happens is that when this program is run it is put into its own process which inherits the current working directory of it's parent which is the shell process. The current working directory of this child process is then changed just like how cd would change the current working directory of the shell. Unfortunately, after the change_dir command is run 

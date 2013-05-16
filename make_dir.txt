@@ -1,0 +1,44 @@
+Documentation for make_dir.c
+
+WHAT IS THIS:
+
+make_dir.c is the code for a program that makes a new directory and is my implementation for the mkdir Linux command. 
+
+INCLUDED C LIBRARIES:
+
+# This library allows us to create directories and use certain constants to help us with access permission bits #
+
+sys/stat.h
+
+# Libraries used for standard C functions and file manipulation #
+
+stdlib.h
+stdio.h
+
+# Libraries used for easy yet in-depth error messages #
+
+string.h
+errno.h
+
+FUNCTIONS:
+
+void print_error(char *this, char *dirname):
+
+This function is passed in a string which is the name of the program running and a string which is the second argument passed through the command line. This function will then print out an error message based off of the current value in errno, which is a variable defined in errno.h, and then exits the program. This function is called whenever an error occurs in our program.
+
+void print_usage(char *this):
+
+This function is passed in a string which is the name of the program running. This function will then print out an error message and the proper usage of the program being run. This function will then exit the program. This error is run whenever the command line input does not make sense.
+
+int main(int argc, char *argv[]):
+
+Our main function. This takes in the command line arguments and creates a new directory with the name given by the second argument passed through the command line. If there is a directory name given, then we use the mkdir(const char *filename, mode_t mode) function to create a new directory. However, if something seems wrong with the Syntax or usage of this command (i.e. to many or to few command line arguments) the print_usage function is called.
+
+
+ODDITIES:
+
+All directories are made with full owner and group permissions and no world permissions. It is also very limited (no special hyphen letter thingies like -rf for the rm Linux command)
+
+DISCLAIMER:
+
+To non-Linux people rm -rf can wipe your entire hard drive. To ALL if you must use this command I am in no way responsible for the results.

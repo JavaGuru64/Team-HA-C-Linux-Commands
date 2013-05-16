@@ -1,0 +1,18 @@
+These eight files are simplified C implementations of some common Linux commands.These commands and their corresponding C implementations are listed below.
+
+change_dir.c	implementation of	cd
+concat.c	implementation of	cat 
+copy.c		implementation of	cp
+delete.c	implementation of	rm
+list.c		implementation of	ls 
+make_dir.c	implementation of	mkdir
+make_file.c	implementation of	No corresponding linux command
+move.c		implementation of	mv
+
+There are some oddities in this list such as change_dir.c and make_file.c, but how and why they are oddities is covered in each corresponding text file. i.e. change_dir.c's corresponding text file is change_dir.txt.
+
+Many, many thanks to GNU for their manual at:
+
+http://www.gnu.org/software/libc/manual
+
+This site is a wealth of information and I highly encourage anyone learning gcc C to read it.

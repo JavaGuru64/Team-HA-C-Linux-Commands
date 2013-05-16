@@ -1,0 +1,40 @@
+Documentation for copy.c
+
+WHAT IS THIS:
+
+copy.c is the code for a program that copies one file to another file and is my implementation for the cd Linux command. 
+
+INCLUDED C LIBRARIES:
+
+# Libraries used for standard C functions and file manipulation #
+
+stdlib.h
+stdio.h
+
+# Libraries used for easy yet in-depth error messages #
+
+string.h
+errno.h
+
+FUNCTIONS:
+
+void print_error(char *this, char *filename1, char *filename2):
+
+This function is passed in a string which is the name of the program running and two strings which are the second and third arguments passed through the command line. This function will then print out an error message based off of the current value in errno, which is a variable defined in errno.h, and then exits the program. This function is called whenever an error occurs in our program.
+
+void print_usage(char *this):
+
+This function is passed in a string which is the name of the program running. This function will then print out an error message and the proper usage of the program being run. This function will then exit the program. This error is run whenever the command line input does not make sense.
+
+int main(int argc, char *argv[]):
+
+Our main function. This takes in the command line arguments and copies the file with the name given by the second command line argument into the third command line argument. It does this by opening the file in the second command line argument for reading. Then the file in the third command line argument is opened for reading as well. This is to check to se if the file exists already. If it does exist, print_error(char *this, char *filename1, char *filename2) is called. Otherwise the file is now created and the data from the first file is copied over to it. Finally both files are closed.
+
+
+ODDITIES:
+
+Very limited (no special hyphen letter thingies like -rf for the rm Linux command)
+
+DISCLAIMER:
+
+To non-Linux people rm -rf can wipe your entire hard drive. To ALL if you must use this command I am in no way responsible for the results.

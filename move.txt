@@ -1,0 +1,40 @@
+Documentation for move.c
+
+WHAT IS THIS:
+
+move.c is the code for a program that moves a program from one are to another and is my implementation for the mv Linux command. 
+
+INCLUDED C LIBRARIES:
+
+# Libraries used for standard C functions and file manipulation #
+
+stdlib.h
+stdio.h
+
+# Libraries used for easy yet in-depth error messages #
+
+string.h
+errno.h
+
+FUNCTIONS:
+
+void print_error(char *this, char *filename1, *filename2):
+
+This function is passed in a string which is the name of the program running and two strings which are the second and third arguments passed through the command line. This function will then print out an error message based off of the current value in errno, which is a variable defined in errno.h, and then exits. This function is called whenever an error occurs in our program.
+
+void print_usage(char *this):
+
+This function is passed in a string which is the name of the program running. This function will then print out an error message and the proper usage of the program being run. This function will then exit the program. This error is run whenever the command line input does not make sense.
+
+int main(int argc, char *argv[]):
+
+Our main function. This takes in three command line arguments and moves the file specified by the second command line argument and moves it to the area specified by the third command line argument.This is done using the rename (const char *oldname, const char *newname)function. Finally, if something seems wrong with the Syntax or usage of this command (i.e. too many or too few command line arguments) the print_usage function is called.
+
+
+ODDITIES:
+
+Very limited (no special hyphen letter thingies like -rf for the rm Linux command)
+
+DISCLAIMER:
+
+To non-Linux people rm -rf can wipe your entire hard drive. To ALL if you must use this command I am in no way responsible for the results.

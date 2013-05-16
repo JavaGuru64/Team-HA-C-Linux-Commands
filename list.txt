@@ -1,0 +1,48 @@
+Documentation for list.c
+
+WHAT IS THIS:
+
+list.c is the code for a program that list all items in a directory and is my implementation for the ls Linux command. 
+
+INCLUDED C LIBRARIES:
+
+# This library allows us to use functions to scan directories #
+
+dirent.h
+
+# Libraries used for standard C functions and file manipulation #
+
+stdlib.h
+stdio.h
+
+# Libraries used for easy yet in-depth error messages #
+
+string.h
+errno.h
+
+FUNCTIONS:
+
+void print_error(char *this, char *dirname):
+
+This function is passed in a string which is the name of the program running and a string which is the second argument passed through the command line. This function will then print out an error message based off of the current value in errno, which is a variable defined in errno.h, and then exits. This function is called whenever an error occurs in our program.
+
+void print_usage(char *this):
+
+This function is passed in a string which is the name of the program running. This function will then print out an error message and the proper usage of the program being run. This function will then exit the program. This error is run whenever the command line input does not make sense.
+
+static int filter(const struct dirent *unused):
+
+This function is used to help us filter our list of items and is a parameter of the scandir (const char *dir, struct dirent ***namelist, int (*selector) (const struct dirent *), int (*cmp) (const void *, const void *)) provided by dirent.h. We decide to list everything all the time so this function only returns 1.
+
+int main(int argc, char *argv[]):
+
+Our main function. This takes in the command line arguments and lists the contents of a directory. If the program is the only command line argument, then the contents of the current directory are retrieved by the scandir (const char *dir, struct dirent ***namelist, int (*selector) (const struct dirent *), int (*cmp) (const void *, const void *)) function and printed to stdout. If there is one other command line argument, then the contents of the directory specified by the contents of the second argument passed through the command line are retrieved and printed to stdout. Finally, if something seems wrong with the Syntax or usage of this command (i.e. neither of the above mentioned conditions are true) the print_usage function is called.
+
+
+ODDITIES:
+
+Always lists hidden files and is very limited (no special hyphen letter thingies like -rf for the rm Linux command)
+
+DISCLAIMER:
+
+To non-Linux people rm -rf can wipe your entire hard drive. To ALL if you must use this command I am in no way responsible for the results.

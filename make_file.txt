@@ -1,0 +1,22 @@
+Documentation for make_file.c
+
+WHAT IS THIS:
+
+make_file.c is the code for a program that makes a new empty file and has no Linux command counterpart. I originally wondered why Linux did not have a command to do this and now I that I have made one I can see why.
+
+INCLUDED C LIBRARIES:
+
+# Libraries used for standard C functions and file manipulation #
+
+stdlib.h
+stdio.h
+
+FUNCTIONS:
+
+int main(int argc, char *argv[]):
+
+Our main function. This takes in the first and second command line arguments and creates a file named after the second command line argument. First we try to open this file through reading. If we can do that then the file exists and we print out an error. If the file does not exist, then we open the file to writing which creates the file. If we have more or less then two command line arguments Then I have the proper usage printed to stdout.
+
+ODDITIES:
+
+This file is in itself an oddity. I wrote it so I will keep it here but I still believe that this is a useless program. Maybe this can be used as a file manipulation "hello world" program.
